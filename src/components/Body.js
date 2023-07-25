@@ -1,5 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { restaurantList } from "../config";
+import { API_URL } from "../config";
 
 import { useEffect, useState } from "react";
 
@@ -18,16 +19,13 @@ const Body = () => {
     getRestaurants();
   }, []);
 
-  console.log("render");
+  // console.log("render");
 
   async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1550547&lng=72.94088909999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(API_URL);
     const json = await data.json();
-    setRestaurants(
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    // json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    setRestaurants(json.data.cards[2].data.data.cards);
   }
 
   return (
@@ -54,7 +52,7 @@ const Body = () => {
       </div>
       <div className="main">
         {restaurants.map((restaurant) => (
-          <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+          <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
         ))}
       </div>
     </>
