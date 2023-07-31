@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { restaurantList } from "../config";
 import { API_URL } from "../config";
+import { Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
@@ -16,6 +17,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
+  // console.log(useState());
 
   useEffect(() => {
     getRestaurants();
@@ -68,7 +70,12 @@ const Body = () => {
           <h1>No Restaurants match your filter</h1>
         ) : (
           filteredRestaurants.map((restaurant) => (
-            <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+            <Link
+              to={"/restaurant/" + restaurant.info.id}
+              key={restaurant.info.id}
+            >
+              <RestaurantCard {...restaurant.info} />
+            </Link>
           ))
         )}
       </div>

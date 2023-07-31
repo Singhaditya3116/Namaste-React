@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
+import RestaurantMenu from "./components/RestaurantMenu";
+import Profile from "./components/Profile";
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -47,18 +49,24 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
-        path: "/about",
+        path: "/about", //react will assume this comes from root if '/' is mentioned. localhost:1234/about
         element: <About />,
+        children: [
+          {
+            path: "profile", //parentpath/{path}
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantMenu />,
+      },
     ],
-  },
-  {
-    path: "/about",
-    element: <About />,
   },
 ]);
 
