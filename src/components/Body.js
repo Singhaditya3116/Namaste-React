@@ -3,14 +3,8 @@ import Shimmer from "./Shimmer";
 import { restaurantList } from "../config";
 import { API_URL } from "../config";
 import { Link } from "react-router-dom";
-
+import { filterData } from "../utils/helper";
 import { useEffect, useState } from "react";
-
-function filterData(searchText, restaurants) {
-  return restaurants.filter((restaurant) =>
-    restaurant?.info?.name?.toLowerCase()?.includes(searchText.toLowerCase())
-  );
-}
 
 const Body = () => {
   // let searchText = "KFG";

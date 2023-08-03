@@ -7,6 +7,9 @@ export const OLD_API_URL =
 export const API_URL =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING";
 
+export const RESTAURANT_MENU_URL =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.8235&lng=86.2304589&submitAction=ENTER&restaurantId=";
+
 export const OLDrestaurantList = [
   {
     info: {

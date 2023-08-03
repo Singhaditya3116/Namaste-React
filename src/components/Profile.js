@@ -1,5 +1,30 @@
-const Profile = () => {
-  return <h2>Profile Component</h2>;
-};
+import React from "react";
+
+class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo: { name: "Dummy Name", location: "Dummy Location" },
+    };
+  }
+
+  async componentDidMount() {
+    const data = await fetch("https://api.github.com/users/Singhaditya3116");
+    const json = await data.json();
+    console.log(json);
+    this.setState({ userInfo: json });
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Profile Class Component</h2>
+        <img src={this.state.userInfo.avatar_url} />
+        <h3>Name : {this.state.userInfo.name}</h3>
+        <h3>Location : {this.state.userInfo.location}</h3>
+      </div>
+    );
+  }
+}
 
 export default Profile;

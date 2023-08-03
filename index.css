@@ -101,3 +101,15 @@ h6 {
 }
 
 /* Footer */
+
+.no-internet {
+  background-color: black;
+  color: white;
+  font-weight: 400;
+  padding: 2rem;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

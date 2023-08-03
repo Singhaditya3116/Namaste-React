@@ -9,6 +9,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
+import useOnline from "./utils/useOnline";
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -29,11 +30,18 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 */
 
 const AppLayout = () => {
+  const isOnline = useOnline();
+
   return (
     <>
       <Header />
       <Outlet />
       <Footer />
+      {!isOnline && (
+        <h4 className="no-internet">
+          🔴 Please Check your Internet Connection.
+        </h4>
+      )}
     </>
   );
 };
