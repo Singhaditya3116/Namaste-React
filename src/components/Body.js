@@ -7,7 +7,6 @@ import { filterData } from "../utils/helper";
 import { useEffect, useState } from "react";
 
 const Body = () => {
-  // let searchText = "KFG";
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -39,9 +38,9 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
+      <div className="search-container p-4 bg-orange-400">
         <input
-          className="search-input"
+          className="h-8 border-4 rounded px-2 focus:bg-orange-600"
           type="text"
           placeholder="Search"
           value={searchText}
@@ -50,7 +49,7 @@ const Body = () => {
           }}
         />
         <button
-          className="search-btn"
+          className="bg-orange-300 hover:bg-orange-400 mx-2 py-1 px-3 rounded"
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
             setFilteredRestaurants(data);
@@ -59,7 +58,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="main">
+      <div className="main flex flex-wrap bg-orange-500">
         {filteredRestaurants.length === 0 ? (
           <h1>No Restaurants match your filter</h1>
         ) : (

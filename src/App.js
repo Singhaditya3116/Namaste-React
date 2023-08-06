@@ -1,6 +1,5 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
@@ -10,24 +9,11 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import useOnline from "./utils/useOnline";
-
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Shimmer from "./components/Shimmer";
+//import Instamart from "./components/Instamart";
 
-/*
-  Header
-   -logo
-   -menu list (Home,about,contact us)
-  
-  Body
-   -Search Box
-   -Restaurant list
-    -Restaurant Card (Image,Name,Rating,Cuisine)
-  
-  Footer
-   -Copyright
-
-
-*/
+const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout = () => {
   const isOnline = useOnline();
@@ -73,6 +59,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
       },
     ],
   },
