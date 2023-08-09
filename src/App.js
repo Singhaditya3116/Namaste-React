@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -12,14 +12,20 @@ import useOnline from "./utils/useOnline";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
 //import Instamart from "./components/Instamart";
+import UserContext from "./utils/UserContext";
 
 const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Singh Aditya",
+    email: "Singhaditya3116@gmail.com",
+  });
+
   const isOnline = useOnline();
 
   return (
-    <>
+    <UserContext.Provider value={{ user: user, setUser: setUser }}>
       <Header />
       <Outlet />
       <Footer />
@@ -28,7 +34,7 @@ const AppLayout = () => {
           🔴 Please Check your Internet Connection.
         </h4>
       )}
-    </>
+    </UserContext.Provider>
   );
 };
 

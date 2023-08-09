@@ -4,13 +4,16 @@ import { restaurantList } from "../config";
 import { API_URL } from "../config";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
   // console.log(useState());
+
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getRestaurants();
@@ -57,6 +60,11 @@ const Body = () => {
         >
           Search
         </button>
+
+        <input
+          value={user.name}
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
+        />
       </div>
       <div className="main flex flex-wrap bg-orange-500">
         {filteredRestaurants.length === 0 ? (

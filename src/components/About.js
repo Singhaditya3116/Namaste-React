@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import React from "react";
-
+import UserContext from "../utils/UserContext";
 class About extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,17 @@ class About extends React.Component {
     console.log("Render");
     return (
       <div className="about">
-        <h1>This is a React Practise going on... About Component😁</h1>
+        <h1 className="font-bold m-3 text-3xl">About us Page</h1>
+        <h1 className="mx-3">
+          This is a React Practise going on... About Component😁
+        </h1>
+        <UserContext.Consumer>
+          {({ user }) => (
+            <h4 className="font-bold m-3">
+              {user.name} - {user.email}
+            </h4>
+          )}
+        </UserContext.Consumer>
         <Outlet />
       </div>
     );
