@@ -9,7 +9,6 @@ const Section = ({ title, desc, isVisible, setIsVisible }) => {
       <button
         className="font-bold p-2 bg-green-400 rounded m-3"
         onClick={() => {
-          // setIsVisible(!isVisible);
           setIsVisible(!isVisible);
         }}
       >

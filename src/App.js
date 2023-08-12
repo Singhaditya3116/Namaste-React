@@ -8,11 +8,14 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
+import Cart from "./components/Cart";
 import useOnline from "./utils/useOnline";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
 //import Instamart from "./components/Instamart";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 const Instamart = lazy(() => import("./components/Instamart"));
 
@@ -25,16 +28,18 @@ const AppLayout = () => {
   const isOnline = useOnline();
 
   return (
-    <UserContext.Provider value={{ user: user, setUser: setUser }}>
-      <Header />
-      <Outlet />
-      <Footer />
-      {!isOnline && (
-        <h4 className="no-internet">
-          🔴 Please Check your Internet Connection.
-        </h4>
-      )}
-    </UserContext.Provider>
+    <Provider store={store}>
+      <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        <Header />
+        <Outlet />
+        <Footer />
+        {!isOnline && (
+          <h4 className="no-internet">
+            🔴 Please Check your Internet Connection.
+          </h4>
+        )}
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -53,7 +58,7 @@ const appRouter = createBrowserRouter([
         element: <About />,
         children: [
           {
-            path: "profile", //parentpath/{path}
+            path: "profile", //if '/profile' is mentioned,then react will think the url is localhost:1234/profile. but for this it is localhost:/about/profile.
             element: <Profile />,
           },
         ],
@@ -73,6 +78,10 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

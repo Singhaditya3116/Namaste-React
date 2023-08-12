@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
+import MenuItemCard from "./MenuItemCard";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
   // console.log(id);
   const restaurant = useRestaurant(id);
+  // console.log(restaurant);
 
   if (!restaurant) {
     return null;
@@ -21,10 +23,11 @@ const RestaurantMenu = () => {
         <h2>{restaurant.avgRating} Rating</h2>
       </div> */}
 
-      <h2>Menu</h2>
+      <h2 className="font-bold text-2xl p-2">Menu</h2>
       <ul>
         {restaurant.map((item) => {
-          return <li key={item.card.info.id}>{item.card.info.name}</li>;
+          // return <li key={item.card.info.id}>{item.card.info.name}</li>;
+          return <MenuItemCard key={item.card.info.id} item={item.card.info} />;
         })}
       </ul>
     </div>
