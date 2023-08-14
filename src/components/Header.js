@@ -7,6 +7,7 @@ const Title = () => {
   return (
     <a href="/">
       <img
+        data-testid="logo"
         className="logo h-24"
         alt="logo"
         src="https://images.crunchbase.com/c_lpad,f_auto,q_auto:eco,dpr_1/ciweynx3x1xu2ny9corc"
@@ -41,7 +42,9 @@ const Header = () => {
           </Link>
           <span className="font-bold text-green-700">{user.name}</span>
           <Link to="/cart">
-            <li className="px-2">Cart - {cartItems.length} items</li>
+            <li className="px-2" data-testid="cart">
+              Cart - {cartItems.length} items
+            </li>
           </Link>
         </ul>
       </div>

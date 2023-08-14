@@ -24,7 +24,7 @@ const RestaurantMenu = () => {
       </div> */}
 
       <h2 className="font-bold text-2xl p-2">Menu</h2>
-      <ul>
+      <ul data-testid="menu-list">
         {restaurant.map((item) => {
           // return <li key={item.card.info.id}>{item.card.info.name}</li>;
           return <MenuItemCard key={item.card.info.id} item={item.card.info} />;

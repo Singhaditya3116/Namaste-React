@@ -23,6 +23,7 @@ const MenuItemCard = (props) => {
         <button
           className="bg-green-500 m-1 py-2 px-4 rounded font-bold "
           onClick={() => handleAddItem(props.item)}
+          data-testid="add-btn"
         >
           Add
         </button>
